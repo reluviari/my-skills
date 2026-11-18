@@ -1,23 +1,42 @@
 ---
-name: shadow-project
+name: shadow-project-ai
 description: >-
-  Produz um dossiê privado de um repositório, uma fase por vez, sem alterar
-  o alvo. Use quando o usuário disser shadow, dossiê, análise privada,
-  inicia o dossiê, próxima fase, fase 00 a 10, sessão completa, ou pedir
-  inventário, project spec, arquitetura, dependências, runbook, Docker
-  isolado, OpenAPI, harness, fluxos, riscos ou relatório final de um
-  repositório somente leitura.
+  Shadow Project AI produz um dossiê privado de um repositório, uma fase por
+  vez, sem alterar o alvo. Use quando o usuário disser Shadow Project AI,
+  shadow, dossiê, análise privada, instalar a skill, inicia o dossiê,
+  próxima fase, fase 00 a 10, sessão completa, ou pedir inventário, project
+  spec, arquitetura, dependências, runbook, Docker isolado, OpenAPI, harness,
+  fluxos, riscos ou relatório final de um repositório somente leitura.
 ---
 
-# Shadow Project
+# Shadow Project AI
 
 Analisa um repositório e grava um dossiê privado. O repositório alvo não é modificado. Tudo o que a skill precisa está neste arquivo. Execute só a fase pedida.
+
+## Instalar
+
+Uma vez por pessoa. Na pasta onde ela guarda repositórios:
+
+```sh
+git clone https://github.com/reluviari/my-skills.git
+cd my-skills
+KIT="$(pwd)"
+name="shadow-project-ai"
+for h in "$HOME/.claude/skills" "$HOME/.cursor/skills" "$HOME/.agents/skills" "$HOME/.codex/skills"; do
+  mkdir -p "$h"
+  ln -sfn "$KIT/$name" "$h/$name"
+done
+```
+
+Feche e abra de novo o Claude, o Cursor ou o Codex. Quem já tiver o clone repete a partir de `cd my-skills`. Não copie a pasta da skill: o symlink aponta para o clone, e `git pull` atualiza quem ligou assim.
+
+Se o usuário perguntar como instalar, mostre este bloco e pare. Não rode o clone nem o symlink por ele.
 
 ## Como usar
 
 O usuário não preenche arquivo de configuração. Ele indica o projeto na frase. Se faltar o caminho, pergunte uma vez.
 
-Exemplo: `Shadow, inicia o dossiê de ~/projetos/api-pedidos`
+Exemplo: `Shadow Project AI, inicia o dossiê de ~/projetos/api-pedidos`
 
 Disso saem:
 
@@ -29,10 +48,10 @@ Mostre esses três valores na fase 00 e grave-os no plano. Se `_analises-privada
 
 | O usuário diz | Execute |
 |---|---|
-| `Shadow, inicia o dossiê de <repo>` | Fase 00. Grave o plano e pare. |
-| `Shadow, fase 03` | Só a fase 03, se o pré-requisito existir. |
+| `Shadow Project AI, inicia o dossiê de <caminho>` | Fase 00. Grave o plano e pare. |
+| `Shadow Project AI, fase 03` | Só a fase 03, se o pré-requisito existir. |
 | `próxima fase` | A primeira fase da tabela cujo artefato ainda não existe. |
-| `Shadow, sessão completa` | Fases 00 a 10, em ordem, neste arquivo. |
+| `Shadow Project AI, sessão completa` | Fases 00 a 10, em ordem, neste arquivo. |
 
 `próxima fase` não pula. Se o pré-requisito faltar, pare e diga qual fase falta.
 
