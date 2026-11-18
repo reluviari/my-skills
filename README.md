@@ -22,7 +22,8 @@ O symlink é da pasta da skill, não uma cópia.
 Troque `nome-da-skill` pelo nome da pasta. Crie a pasta do agente se ela ainda não existir.
 
 ```sh
-KIT="$HOME/Documents/Projects/my-skills"
+# rode dentro da pasta deste clone
+KIT="$(pwd)"
 name="nome-da-skill"
 for h in "$HOME/.claude/skills" "$HOME/.cursor/skills" "$HOME/.agents/skills" "$HOME/.codex/skills"; do
   mkdir -p "$h"

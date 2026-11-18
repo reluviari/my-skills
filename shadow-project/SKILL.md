@@ -15,7 +15,17 @@ Analisa um repositório e grava um dossiê privado. O repositório alvo não é 
 
 ## Como usar
 
-O usuário fala uma fase. Se faltar o repositório, pergunte o nome ou o caminho uma vez. Se ele informar caminhos diferentes dos padrões abaixo, use os dele.
+O usuário não preenche arquivo de configuração. Ele indica o projeto na frase. Se faltar o caminho, pergunte uma vez.
+
+Exemplo: `Shadow, inicia o dossiê de ~/projetos/api-pedidos`
+
+Disso saem:
+
+- `REPO_ALVO` = `api-pedidos`, o nome da pasta
+- `REPO_PATH` = o caminho que ele deu, somente leitura
+- `DOSSIER_PATH` = `~/projetos/_analises-privadas/api-pedidos`, fora do Git do projeto
+
+Mostre esses três valores na fase 00 e grave-os no plano. Se `_analises-privadas` cair dentro de um Git pai, proponha outro diretório privado e espere confirmação antes de criar. Se o usuário disser outro destino para o dossiê, use o destino dele.
 
 | O usuário diz | Execute |
 |---|---|
@@ -33,7 +43,7 @@ Ao terminar a fase 10, compare o estado do `REPO_PATH` com o registrado na fase 
 Resultado esperado:
 
 ```text
-/repos/
+<PASTA_PAI>/
 ├── <REPO_ALVO>/                         # somente leitura
 └── _analises-privadas/
     └── <REPO_ALVO>/
@@ -56,14 +66,15 @@ A fase 06 pode acrescentar `laboratorio-docker/`. A fase 08 pode acrescentar `ha
 
 ## Variáveis
 
-```text
-REPOS_BASE=/repos
-REPO_ALVO=<NOME_DO_REPO>
-REPO_PATH=/repos/<NOME_DO_REPO>
-DOSSIER_PATH=/repos/_analises-privadas/<NOME_DO_REPO>
-```
+Não há caminho fixo. A fase 00 resolve e grava estes nomes em `00-plano-de-analise.md`. As fases seguintes leem o plano.
 
-Se `_analises-privadas` cair dentro de um Git pai, escolha outro diretório privado fora desse Git. Grave `REPO_ALVO`, `REPO_PATH` e `DOSSIER_PATH` em `00-plano-de-analise.md`. As fases seguintes leem esse plano. O dossiê é o estado. Não crie arquivo de progresso dentro do repositório alvo.
+| Nome | Significado |
+|---|---|
+| `REPO_ALVO` | Nome da pasta do projeto |
+| `REPO_PATH` | Caminho do código. Somente leitura |
+| `DOSSIER_PATH` | Caminho do dossiê, fora do Git do projeto |
+
+O dossiê é o estado. Não crie arquivo de progresso dentro do repositório alvo.
 
 ## Contrato
 
