@@ -1,0 +1,26 @@
+# Ambientes e cache
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Binários e artefatos de análise
+*.pdf
+*.zip
+*.tar.gz
+*.png
+*.jpg
+*.jpeg
+
+# Credenciais
+.env
+.env.*
+*.key
+*.pem
+*token*
+*secret*
+*credential*
+
+# Dossiês gerados pela skill shadow-project
+_analises-privadas/
+.DS_Store
